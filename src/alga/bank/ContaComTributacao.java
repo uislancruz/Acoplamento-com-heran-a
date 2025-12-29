@@ -1,0 +1,49 @@
+package alga.bank;
+
+import javabank.Conta;
+
+import java.util.Objects;
+
+public class ContaComTributacao implements  Conta {
+
+    public static final double TAXA_IMPOSTO_MOVIMENTACAO = 0.1;
+    private Conta contaOriginal;
+
+    public ContaComTributacao(Conta contaOriginal) {
+        Objects.requireNonNull(contaOriginal);
+        this.contaOriginal = contaOriginal;
+    }
+
+    @Override
+    public void depositar(double valor) {
+        contaOriginal.depositar(valor);
+    }
+
+    @Override
+    public double getSaldo() {
+        return contaOriginal.getSaldo();
+    }
+
+    @Override
+    public void sacar(double valor) {
+        contaOriginal.sacar(valor);
+        debitarImpostoMovimentacao(valor);
+    }
+
+    @Override
+    public void transferir(double valor, Conta conta) {
+        contaOriginal.transferir(valor, conta);
+        debitarImpostoMovimentacao(valor);
+    }
+
+    @Override
+    public void aplicarInvestimento(double valor) {
+        contaOriginal.aplicarInvestimento(valor);
+        debitarImpostoMovimentacao(valor);
+    }
+
+    private void debitarImpostoMovimentacao(double valorMovimentacao) {
+        contaOriginal.sacar(valorMovimentacao * TAXA_IMPOSTO_MOVIMENTACAO);
+    }
+}
+

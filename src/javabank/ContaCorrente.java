@@ -15,4 +15,10 @@ public class ContaCorrente implements Conta{
         this.saldo -= valor;
         conta.depositar(valor);
     }
+
+    @Override
+    public void aplicarInvestimento(double valor) {
+        this.saldo -= valor;
+        // TODO aqui aplicaria o investimento
+    }
 }
