@@ -22,4 +22,9 @@ public class ContaCorrenteComTributacao extends ContaCorrente {
     public void transferir(double valor, Conta conta) {
         super.transferir(valor, conta);
     }
+
+    @Override
+    public void transferir(double valor, Conta conta) {
+        super.transferir(valor, conta);
+    }
 }
