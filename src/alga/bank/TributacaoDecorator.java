@@ -4,12 +4,12 @@ import javabank.Conta;
 
 import java.util.Objects;
 
-public class ContaComTributacao implements  Conta {
+public class TributacaoDecorator implements  Conta {
 
     public static final double TAXA_IMPOSTO_MOVIMENTACAO = 0.1;
     private Conta contaOriginal;
 
-    public ContaComTributacao(Conta contaOriginal) {
+    public TributacaoDecorator(Conta contaOriginal) {
         Objects.requireNonNull(contaOriginal);
         this.contaOriginal = contaOriginal;
     }
