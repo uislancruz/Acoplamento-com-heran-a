@@ -2,48 +2,35 @@ package alga.bank;
 
 import javabank.Conta;
 
-import java.util.Objects;
 
-public class TributacaoDecorator implements  Conta {
+public class TributacaoDecorator extends ContaBaseDecorator {
 
     public static final double TAXA_IMPOSTO_MOVIMENTACAO = 0.1;
-    private Conta contaOriginal;
 
     public TributacaoDecorator(Conta contaOriginal) {
-        Objects.requireNonNull(contaOriginal);
-        this.contaOriginal = contaOriginal;
-    }
-
-    @Override
-    public void depositar(double valor) {
-        contaOriginal.depositar(valor);
-    }
-
-    @Override
-    public double getSaldo() {
-        return contaOriginal.getSaldo();
+        super(contaOriginal);
     }
 
     @Override
     public void sacar(double valor) {
-        contaOriginal.sacar(valor);
+        getContaOriginal().sacar(valor);
         debitarImpostoMovimentacao(valor);
     }
 
     @Override
     public void transferir(double valor, Conta conta) {
-        contaOriginal.transferir(valor, conta);
+        getContaOriginal().transferir(valor, conta);
         debitarImpostoMovimentacao(valor);
     }
 
     @Override
     public void aplicarInvestimento(double valor) {
-        contaOriginal.aplicarInvestimento(valor);
+        getContaOriginal().aplicarInvestimento(valor);
         debitarImpostoMovimentacao(valor);
     }
 
     private void debitarImpostoMovimentacao(double valorMovimentacao) {
-        contaOriginal.sacar(valorMovimentacao * TAXA_IMPOSTO_MOVIMENTACAO);
+        getContaOriginal().sacar(valorMovimentacao * TAXA_IMPOSTO_MOVIMENTACAO);
     }
 }
 
