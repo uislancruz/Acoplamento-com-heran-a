@@ -36,4 +36,9 @@ public abstract class ContaBaseDecorator implements Conta{
     public void transferir(double valor, Conta conta) {
         contaOriginal.transferir(valor, conta);
     }
+
+    @Override
+    public void imprimirSaldo() {
+        contaOriginal.imprimirSaldo();
+    }
 }
