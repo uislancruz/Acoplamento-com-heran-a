@@ -1,6 +1,7 @@
 package alga;
 
 import alga.com.loja.CartaoCredito;
+import alga.com.loja.MetodoPagamento;
 
 public class PrincipalLoja {
     static void main(String[] args) {
@@ -9,7 +10,7 @@ public class PrincipalLoja {
         carrinho.adicionarItem(new ItemCarrinho("Apple Watch", 5_100));
         carrinho.adicionarItem(new ItemCarrinho("Magic Mouse", 600));
 
-        CartaoCredito metodoPagamento = new CartaoCredito("123123123");
+        MetodoPagamento metodoPagamento = new CartaoCredito("123123123");
 
         carrinho.finalizar(metodoPagamento);
     }
